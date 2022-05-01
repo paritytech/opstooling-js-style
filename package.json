@@ -4,12 +4,6 @@
   "version": "0.0.0",
   "author": "Parity <admin@parity.io> (https://parity.io)",
   "license": "Apache-2.0",
-  "main": "./src/index.js",
-  "exports": {
-    ".": {
-      "require": "./src/index.js"
-    }
-  },
   "scripts": {
     "prettier": "prettier --loglevel silent",
     "fix:eslint": "eslint --fix",

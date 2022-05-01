@@ -1,3 +1,1 @@
-const { configuration } = require("./src/prettier/configuration")
-
-module.exports = configuration
+module.exports = require("./src/prettier/configuration")

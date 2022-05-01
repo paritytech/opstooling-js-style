@@ -1,3 +1,5 @@
+const path = require("path")
+
 const baseRules = {
   // prettier
   "prettier/prettier": "error",
@@ -146,43 +148,40 @@ const typescriptRules = {
   "@typescript-eslint/dot-notation": "error",
 }
 
-const defaultExtends = ["eslint:recommended", "plugin:prettier/recommended"]
+const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"]
 
-const typescriptConfiguration = {
-  extends: [...defaultExtends, "plugin:@typescript-eslint/recommended"],
-  parserOptions: {
-    project: "./tsconfig.json",
-    tsconfigRootDir: __dirname,
-    extraFileExtensions: [".cjs"],
-  },
-}
+const basePlugins = [
+  "sonarjs",
+  "unused-imports",
+  "simple-import-sort",
+  "import",
+  "prettier",
+]
 
-const configuration = {
-  env: { node: true },
-  root: true,
-  extends: defaultExtends,
-  parser: "@typescript-eslint/parser",
-  plugins: [
-    "@typescript-eslint",
-    "sonarjs",
-    "unused-imports",
-    "simple-import-sort",
-    "import",
-    "prettier",
-  ],
-  rules: baseRules,
-  overrides: [
-    {
-      ...typescriptConfiguration,
-      files: "{*,**,**/*}.ts",
-      rules: { ...baseRules, ...typescriptRules },
+const getTypescriptOverride = ({ rootDir }) => {
+  return {
+    plugins: [...basePlugins, "@typescript-eslint"],
+    extends: [...baseExtends, "plugin:@typescript-eslint/recommended"],
+    parserOptions: {
+      project: path.join(rootDir, "tsconfig.json"),
+      tsconfigRootDir: rootDir,
+      extraFileExtensions: [".cjs"],
     },
-  ],
+    files: "{*,**,**/*}.ts",
+    rules: { ...baseRules, ...typescriptRules },
+  }
 }
 
-module.exports = {
-  baseRules,
-  typescriptRules,
-  typescriptConfiguration,
-  configuration,
+const getConfiguration = ({ typescript } = {}) => {
+  return {
+    env: { node: true },
+    root: true,
+    parser: "@typescript-eslint/parser",
+    extends: baseExtends,
+    plugins: basePlugins,
+    rules: baseRules,
+    overrides: typescript ? [getTypescriptOverride(typescript)] : [],
+  }
 }
+
+module.exports = { getTypescriptOverride, getConfiguration }
