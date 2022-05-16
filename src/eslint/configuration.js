@@ -95,8 +95,7 @@ const baseRules = {
 }
 
 const typescriptRules = {
-  // no-undef is already checked by TypeScript itself
-  "no-undef": "off",
+  "no-undef": "off", // this rule is already checked by TypeScript itself
   "@typescript-eslint/strict-boolean-expressions": [
     "error",
     {
@@ -145,6 +144,7 @@ const typescriptRules = {
   "@typescript-eslint/no-array-constructor": "error",
   "@typescript-eslint/no-invalid-this": "error",
   "@typescript-eslint/no-empty-function": "off",
+  "dot-notation": "off", // can conflict with "@typescript-eslint/dot-notation"
   "@typescript-eslint/dot-notation": "error",
 }
 
