@@ -91,7 +91,11 @@ const baseRules = {
   "dot-notation": "error",
   "no-redeclare": "error",
   "arrow-parens": "error",
-  "arrow-body-style": ["error", "as-needed"],
+  "arrow-body-style": [
+    "error",
+    "as-needed",
+    { requireReturnForObjectLiteral: true },
+  ],
 }
 
 const typescriptRules = {
@@ -161,26 +165,30 @@ const basePlugins = [
   "prettier",
 ]
 
-const getTypescriptOverride = ({ rootDir }) => ({
-  plugins: [...basePlugins, "@typescript-eslint"],
-  extends: [...baseExtends, "plugin:@typescript-eslint/recommended"],
-  parserOptions: {
-    project: path.join(rootDir, "tsconfig.json"),
-    tsconfigRootDir: rootDir,
-    extraFileExtensions: [".cjs"],
-  },
-  files: "{*,**,**/*}.ts",
-  rules: { ...baseRules, ...typescriptRules },
-})
+const getTypescriptOverride = ({ rootDir }) => {
+  return {
+    plugins: [...basePlugins, "@typescript-eslint"],
+    extends: [...baseExtends, "plugin:@typescript-eslint/recommended"],
+    parserOptions: {
+      project: path.join(rootDir, "tsconfig.json"),
+      tsconfigRootDir: rootDir,
+      extraFileExtensions: [".cjs"],
+    },
+    files: "{*,**,**/*}.ts",
+    rules: { ...baseRules, ...typescriptRules },
+  }
+}
 
-const getConfiguration = ({ typescript } = {}) => ({
-  env: { node: true },
-  root: true,
-  parser: "@typescript-eslint/parser",
-  extends: baseExtends,
-  plugins: basePlugins,
-  rules: baseRules,
-  overrides: typescript ? [getTypescriptOverride(typescript)] : [],
-})
+const getConfiguration = ({ typescript } = {}) => {
+  return {
+    env: { node: true },
+    root: true,
+    parser: "@typescript-eslint/parser",
+    extends: baseExtends,
+    plugins: basePlugins,
+    rules: baseRules,
+    overrides: typescript ? [getTypescriptOverride(typescript)] : [],
+  }
+}
 
 module.exports = { getTypescriptOverride, getConfiguration }
