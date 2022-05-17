@@ -120,7 +120,8 @@ const typescriptRules = {
   "@typescript-eslint/no-explicit-any": "off",
   "@typescript-eslint/no-misused-new": "error",
   "@typescript-eslint/await-thenable": "error",
-  "@typescript-eslint/return-await": "error",
+  "no-return-await": "off", // conflicts with @typescript-eslint/return-await
+  "@typescript-eslint/return-await": ["error", "always"],
   "@typescript-eslint/require-await": "error",
   "@typescript-eslint/no-throw-literal": "error",
   "@typescript-eslint/no-shadow": "error",
