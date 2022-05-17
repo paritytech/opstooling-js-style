@@ -106,7 +106,10 @@ const typescriptRules = {
       allowNullableString: true,
     },
   ],
-  "@typescript-eslint/explicit-module-boundary-types": "off",
+  "@typescript-eslint/explicit-module-boundary-types": [
+    "error",
+    { allowHigherOrderFunctions: true },
+  ],
   "@typescript-eslint/explicit-function-return-type": "off",
   "@typescript-eslint/no-empty-interface": "off",
   "@typescript-eslint/interface-name-prefix": "off",
