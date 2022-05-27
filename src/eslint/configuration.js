@@ -91,7 +91,11 @@ const baseRules = {
   "dot-notation": "error",
   "no-redeclare": "error",
   "arrow-parens": "error",
-  "arrow-body-style": ["error", "always"],
+  "arrow-body-style": [
+    "error",
+    "as-needed",
+    { requireReturnForObjectLiteral: true },
+  ],
 }
 
 const typescriptRules = {
