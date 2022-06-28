@@ -121,7 +121,7 @@ const typescriptRules = {
   "@typescript-eslint/restrict-plus-operands": "error",
   "@typescript-eslint/restrict-template-expressions": "error",
   "@typescript-eslint/no-floating-promises": "error",
-  "@typescript-eslint/no-explicit-any": "off",
+  "@typescript-eslint/no-explicit-any": "error",
   "@typescript-eslint/no-misused-new": "error",
   "@typescript-eslint/await-thenable": "error",
   "no-return-await": "off", // conflicts with @typescript-eslint/return-await
