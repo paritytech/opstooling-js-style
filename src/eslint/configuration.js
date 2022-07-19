@@ -180,7 +180,25 @@ const getTypescriptOverride = ({ rootDir }) => {
   }
 }
 
+const getJestTypescriptOverride = () => {
+  return {
+    files: "{*,**,**/*}.spec.ts",
+    plugins: ["jest"],
+    rules: {
+      "@typescript-eslint/unbound-method": "off",
+      "jest/unbound-method": "error",
+    },
+  }
+}
+
 const getConfiguration = ({ typescript } = {}) => {
+  const overrides = []
+
+  if (typescript) {
+    overrides.push(getTypescriptOverride(typescript))
+    overrides.push(getJestTypescriptOverride())
+  }
+
   return {
     env: { node: true },
     root: true,
@@ -188,7 +206,7 @@ const getConfiguration = ({ typescript } = {}) => {
     extends: baseExtends,
     plugins: basePlugins,
     rules: baseRules,
-    overrides: typescript ? [getTypescriptOverride(typescript)] : [],
+    overrides,
   }
 }
 
