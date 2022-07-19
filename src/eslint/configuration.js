@@ -154,6 +154,23 @@ const typescriptRules = {
   "@typescript-eslint/no-empty-function": "off",
   "dot-notation": "off", // can conflict with "@typescript-eslint/dot-notation"
   "@typescript-eslint/dot-notation": "error",
+  camelcase: "off", // can conflict with @typescript-eslint/naming-convention
+  "@typescript-eslint/naming-convention": [
+    "error",
+    {
+      selector: "default",
+      format: ["camelCase"],
+      leadingUnderscore: "allow",
+      trailingUnderscore: "allow",
+    },
+    {
+      selector: "variable",
+      format: ["camelCase"],
+      leadingUnderscore: "allow",
+      trailingUnderscore: "allow",
+    },
+    { selector: "typeLike", format: ["PascalCase"] },
+  ],
 }
 
 const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"]
