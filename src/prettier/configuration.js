@@ -1,1 +1,1 @@
-module.exports = { semi: false, trailingComma: "all", arrowParens: "always" }
+module.exports = { semi: false, trailingComma: "all", arrowParens: "always", printWidth: 120 }

@@ -12,12 +12,7 @@ const baseRules = {
   "unused-imports/no-unused-imports-ts": "error",
   "unused-imports/no-unused-vars-ts": [
     "error",
-    {
-      vars: "all",
-      varsIgnorePattern: "^_",
-      args: "after-used",
-      argsIgnorePattern: "^_",
-    },
+    { vars: "all", varsIgnorePattern: "^_", args: "after-used", argsIgnorePattern: "^_" },
   ],
 
   // related to import sorting and ordering
@@ -27,13 +22,7 @@ const baseRules = {
   "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
   "simple-import-sort/imports": [
     "error",
-    {
-      groups: [
-        ["^([^s.]|s($|[^r])|s($|[^r]$|r[^c])|sr($|c[^/]))"],
-        ["^src"],
-        ["."],
-      ],
-    },
+    { groups: [["^([^s.]|s($|[^r])|s($|[^r]$|r[^c])|sr($|c[^/]))"], ["^src"], ["."]] },
   ],
   "import/first": "error",
   "import/newline-after-import": "error",
@@ -74,13 +63,11 @@ const baseRules = {
       message: "setTimeout must always be invoked with two arguments.",
     },
     {
-      selector:
-        "CallExpression[callee.name='setInterval'][arguments.length!=2]",
+      selector: "CallExpression[callee.name='setInterval'][arguments.length!=2]",
       message: "setInterval must always be invoked with two arguments.",
     },
     {
-      selector:
-        "CallExpression[arguments.length=1] > MemberExpression.callee > Identifier.property[name='reduce']",
+      selector: "CallExpression[arguments.length=1] > MemberExpression.callee > Identifier.property[name='reduce']",
       message: "Provide initialValue to .reduce().",
     },
   ],
@@ -91,11 +78,7 @@ const baseRules = {
   "dot-notation": "error",
   "no-redeclare": "error",
   "arrow-parens": "error",
-  "arrow-body-style": [
-    "error",
-    "as-needed",
-    { requireReturnForObjectLiteral: true },
-  ],
+  "arrow-body-style": ["error", "as-needed", { requireReturnForObjectLiteral: true }],
 }
 
 const typescriptRules = {
@@ -110,10 +93,7 @@ const typescriptRules = {
       allowNullableString: true,
     },
   ],
-  "@typescript-eslint/explicit-module-boundary-types": [
-    "error",
-    { allowHigherOrderFunctions: true },
-  ],
+  "@typescript-eslint/explicit-module-boundary-types": ["error", { allowHigherOrderFunctions: true }],
   "@typescript-eslint/explicit-function-return-type": "off",
   "@typescript-eslint/no-empty-interface": "off",
   "@typescript-eslint/interface-name-prefix": "off",
@@ -158,13 +138,7 @@ const typescriptRules = {
 
 const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"]
 
-const basePlugins = [
-  "sonarjs",
-  "unused-imports",
-  "simple-import-sort",
-  "import",
-  "prettier",
-]
+const basePlugins = ["sonarjs", "unused-imports", "simple-import-sort", "import", "prettier"]
 
 const getTypescriptOverride = ({ rootDir }) => {
   return {
@@ -184,10 +158,7 @@ const getJestTypescriptOverride = () => {
   return {
     files: "{*,**,**/*}.spec.ts",
     plugins: ["jest"],
-    rules: {
-      "@typescript-eslint/unbound-method": "off",
-      "jest/unbound-method": "error",
-    },
+    rules: { "@typescript-eslint/unbound-method": "off", "jest/unbound-method": "error" },
   }
 }
 
