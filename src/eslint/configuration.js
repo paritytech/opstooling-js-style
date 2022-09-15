@@ -41,7 +41,6 @@ const baseRules = {
   "sonarjs/no-collapsible-if": "error",
   "sonarjs/non-existent-operator": "error",
   "sonarjs/no-collection-size-mischeck": "error",
-  "sonarjs/no-duplicate-string": "error",
   "sonarjs/no-gratuitous-expressions": "error",
   "sonarjs/no-duplicated-branches": "error",
   "sonarjs/no-redundant-boolean": "error",
