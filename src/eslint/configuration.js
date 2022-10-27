@@ -1,5 +1,15 @@
 const path = require("path")
 
+/* Eslint configuration relies on referencing plugins by their names.
+   Unfortunately, when using shared configs, it looks for plugins in node_modules of the dependent,
+   but plugins are listed in dependencies of this package, and they might get randomly lost,
+   just because hoisting didn't work, or somethig.
+   This adds `node_modules` of `opstooling-js-style` to NODE_PATH, so plugins would always be found */
+
+process.env.NODE_PATH =
+  `${process.env.NODE_PATH ? process.env.NODE_PATH + ":" : ""}` + path.join(__dirname, "..", "..", "node_modules")
+require("module").Module._initPaths()
+
 const baseRules = {
   // prettier
   "prettier/prettier": "error",
