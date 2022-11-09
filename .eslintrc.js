@@ -1,3 +1,3 @@
-const { getConfiguration } = require("./src/eslint/configuration")
+const { getConfiguration } = require("./src/eslint/configuration");
 
-module.exports = getConfiguration()
+module.exports = getConfiguration();

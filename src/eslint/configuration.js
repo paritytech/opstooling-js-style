@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require("path");
 
 /* Eslint configuration relies on referencing plugins by their names.
    Unfortunately, when using shared configs, it looks for plugins in node_modules of the dependent,
@@ -7,8 +7,8 @@ const path = require("path")
    This adds `node_modules` of `opstooling-js-style` to NODE_PATH, so plugins would always be found */
 
 process.env.NODE_PATH =
-  `${process.env.NODE_PATH ? process.env.NODE_PATH + ":" : ""}` + path.join(__dirname, "..", "..", "node_modules")
-require("module").Module._initPaths()
+  `${process.env.NODE_PATH ? process.env.NODE_PATH + ":" : ""}` + path.join(__dirname, "..", "..", "node_modules");
+require("module").Module._initPaths();
 
 const baseRules = {
   // prettier
@@ -88,7 +88,7 @@ const baseRules = {
   "no-redeclare": "error",
   "arrow-parens": "error",
   "arrow-body-style": ["error", "as-needed", { requireReturnForObjectLiteral: true }],
-}
+};
 
 const typescriptRules = {
   "no-undef": "off", // this rule is already checked by TypeScript itself
@@ -143,11 +143,11 @@ const typescriptRules = {
   "@typescript-eslint/no-empty-function": "off",
   "dot-notation": "off", // can conflict with "@typescript-eslint/dot-notation"
   "@typescript-eslint/dot-notation": "error",
-}
+};
 
-const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"]
+const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"];
 
-const basePlugins = ["sonarjs", "unused-imports", "simple-import-sort", "import", "prettier"]
+const basePlugins = ["sonarjs", "unused-imports", "simple-import-sort", "import", "prettier"];
 
 const getTypescriptOverride = ({ rootDir }) => {
   return {
@@ -160,23 +160,23 @@ const getTypescriptOverride = ({ rootDir }) => {
     },
     files: "{*,**,**/*}.ts",
     rules: { ...baseRules, ...typescriptRules },
-  }
-}
+  };
+};
 
 const getJestTypescriptOverride = () => {
   return {
     files: "{*,**,**/*}.spec.ts",
     plugins: ["jest"],
     rules: { "@typescript-eslint/unbound-method": "off", "jest/unbound-method": "error" },
-  }
-}
+  };
+};
 
 const getConfiguration = ({ typescript } = {}) => {
-  const overrides = []
+  const overrides = [];
 
   if (typescript) {
-    overrides.push(getTypescriptOverride(typescript))
-    overrides.push(getJestTypescriptOverride())
+    overrides.push(getTypescriptOverride(typescript));
+    overrides.push(getJestTypescriptOverride());
   }
 
   return {
@@ -187,7 +187,7 @@ const getConfiguration = ({ typescript } = {}) => {
     plugins: basePlugins,
     rules: baseRules,
     overrides,
-  }
-}
+  };
+};
 
-module.exports = { getTypescriptOverride, getConfiguration }
+module.exports = { getTypescriptOverride, getConfiguration };
