@@ -158,20 +158,20 @@ const getTypescriptOverride = ({ rootDir }) => {
       tsconfigRootDir: rootDir,
       extraFileExtensions: [".cjs"],
     },
-    files: "{*,**,**/*}.ts",
+    files: "{*,**,**/*}.{ts,tsx}",
     rules: { ...baseRules, ...typescriptRules },
   };
 };
 
 const getJestTypescriptOverride = () => {
   return {
-    files: "{*,**,**/*}.spec.ts",
+    files: ["{*,**,**/*}.spec.ts", "**/__mocks__/{*,**,**/*}.{js,cjs,mjs,ts}"],
     plugins: ["jest"],
     rules: { "@typescript-eslint/unbound-method": "off", "jest/unbound-method": "error" },
   };
 };
 
-const getConfiguration = ({ typescript } = {}) => {
+const getConfiguration = ({ typescript, browser } = {}) => {
   const overrides = [];
 
   if (typescript) {
@@ -179,8 +179,14 @@ const getConfiguration = ({ typescript } = {}) => {
     overrides.push(getJestTypescriptOverride());
   }
 
+  const env = { node: true };
+
+  if (browser) {
+    env.browser = true;
+  }
+
   return {
-    env: { node: true },
+    env,
     root: true,
     parser: "@typescript-eslint/parser",
     extends: baseExtends,
