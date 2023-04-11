@@ -1,13 +1,14 @@
 {
-  "name": "opstooling-js-style",
-  "description": "opstooling-js-style",
-  "version": "0.0.0",
+  "name": "@eng-automation/js-style",
+  "description": "Parity EngAutomation codestyle package",
+  "version": "0.0.0-updated-via-gh-releases",
   "author": "Parity <admin@parity.io> (https://parity.io)",
   "license": "Apache-2.0",
   "scripts": {
     "fix:eslint": "eslint --fix",
     "fix:prettier": "prettier --write",
-    "fix": "yarn fix:eslint '{*,**/*}.{cjs,ts,js}' && yarn fix:prettier '{*,**/*}.{json,html}'"
+    "fix": "yarn fix:eslint '{*,**/*}.{cjs,ts,js}' && yarn fix:prettier '{*,**/*}.{json,html}'",
+    "lint": "eslint '{*,**/*}.{cjs,ts,js}' && prettier --check '{*,**/*}.{json,html}'"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.21.0",
