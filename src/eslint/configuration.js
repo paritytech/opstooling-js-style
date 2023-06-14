@@ -145,9 +145,9 @@ const typescriptRules = {
   "@typescript-eslint/dot-notation": "error",
 };
 
-const baseExtends = ["eslint:recommended", "plugin:prettier/recommended"];
+const baseExtends = ["eslint:recommended", "plugin:prettier/recommended", "plugin:svelte/recommended"];
 
-const basePlugins = ["sonarjs", "unused-imports", "simple-import-sort", "import", "prettier"];
+const basePlugins = ["sonarjs", "unused-imports", "simple-import-sort", "import"];
 
 const getTypescriptOverride = ({ rootDir }) => {
   return {
@@ -177,6 +177,17 @@ const getConfiguration = ({ typescript, browser } = {}) => {
   if (typescript) {
     overrides.push(getTypescriptOverride(typescript));
     overrides.push(getJestTypescriptOverride());
+
+    overrides.push({
+      files: ["**/*.svelte"],
+      parser: "svelte-eslint-parser",
+      rules: {
+        // this rule thinks of svelte's <script> imports as unused,
+        // even if they are used with $notation in the template
+        "unused-imports/no-unused-imports-ts": "off",
+      },
+      parserOptions: { parser: "@typescript-eslint/parser" },
+    });
   }
 
   const env = { node: true };
