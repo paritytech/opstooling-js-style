@@ -37,7 +37,7 @@ const baseRules = {
   "import/first": "error",
   "import/newline-after-import": "error",
   "import/no-duplicates": ["error", { considerQueryString: true }],
-  "no-restricted-imports": ["error", { patterns: ["**/../**", ".."] }],
+  "no-restricted-imports": "off",
 
   // sonarjs
   "sonarjs/no-all-duplicated-branches": "error",
