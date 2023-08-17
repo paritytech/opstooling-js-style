@@ -4,4 +4,5 @@ module.exports = {
   arrowParens: "always",
   printWidth: 120,
   overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
+  plugins: ["prettier-plugin-svelte"],
 };
